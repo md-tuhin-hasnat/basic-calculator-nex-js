@@ -120,7 +120,7 @@ export default function Home(){
 
   useEffect(()=>{
     setIsMobile(detectMobileDevice());
-  },[isMobile]);
+  });
 
 
   useEffect(()=>{
