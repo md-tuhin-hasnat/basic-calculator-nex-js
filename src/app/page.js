@@ -6,6 +6,7 @@ import style from "./Home.module.css";
 export default function Home(){
   const [string,setString] = useState("");
   const [answer,setAnswer] = useState("");
+  const [isMobile, setIsMobile] = useState(false);
 
   function displayString(sym){
     setString((prev)=> prev+sym);
@@ -112,6 +113,15 @@ export default function Home(){
     }
   }
 
+  const detectMobileDevice = () => {
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    return /android|iPad|iPhone|iPod/.test(userAgent);
+  };
+
+  useEffect(()=>{
+    setIsMobile(detectMobileDevice());
+  },[isMobile]);
+
 
   useEffect(()=>{
     document.addEventListener("keydown", handleShortcut);
@@ -136,6 +146,7 @@ export default function Home(){
         value={string===""?0:string}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
+        readOnly={isMobile}
         />
       <p className={style.ans}>{answer===""?0:answer}</p>
     </div>
