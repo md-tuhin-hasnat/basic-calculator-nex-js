@@ -115,7 +115,7 @@ export default function Home(){
 
   const detectMobileDevice = () => {
     const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-    return /android|iPad|iPhone|iPod/.test(userAgent);
+    return /android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent) || 'ontouchstart' in window;
   };
 
   useEffect(()=>{
